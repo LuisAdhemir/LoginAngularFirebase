@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,12 @@ import { RegisterPageComponent } from './componentes/register-page/register-page
 import { LoginPageComponent } from './componentes/login-page/login-page.component';
 import { PrivatePageComponent } from './componentes/private-page/private-page.component';
 import { NotFoundPageComponent } from './componentes/not-found-page/not-found-page.component';
+
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule }from '@angular/fire/auth';
+
+import { environment } from '../environments/environment';
+import { AutenticaServiceService } from './Servicios/autentica-service.service'
 
 @NgModule({
   declarations: [
@@ -22,9 +29,12 @@ import { NotFoundPageComponent } from './componentes/not-found-page/not-found-pa
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [],
+  providers: [AutenticaServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
