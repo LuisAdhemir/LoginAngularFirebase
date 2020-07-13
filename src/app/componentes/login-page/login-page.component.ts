@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AutenticaServiceService } from '../../Servicios/autentica-service.service';
 import { Router } from '@angular/router';
+import { FlashMessagesService } from 'angular2-flash-messages';
 
 @Component({
   selector: 'app-login-page',
@@ -13,7 +14,8 @@ export class LoginPageComponent implements OnInit {
 
   constructor(
     public auService: AutenticaServiceService,
-    public router: Router
+    public router: Router,
+    public flashMensaje: FlashMessagesService
 
   ) { }
 
@@ -24,9 +26,12 @@ export class LoginPageComponent implements OnInit {
     this.auService.loginUser(this.email, this.password)
     .then( (res) => {
       console.log("usuario login");
+      
+      this.flashMensaje.show('Usuario logado correctamente.',{cssClass: 'alert-success', timeout:4000});
       this.router.navigate(["/private"]);
     } ).catch( (err) => {
       console.log(err);
+      this.flashMensaje.show( err.message,{cssClass: 'alert-danger', timeout:4000});
       this.router.navigate(["/login"]);
     })
   }
