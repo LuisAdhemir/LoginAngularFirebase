@@ -6,11 +6,13 @@ import { NotFoundPageComponent } from './componentes/not-found-page/not-found-pa
 import { PrivatePageComponent } from './componentes/private-page/private-page.component';
 import { RegisterPageComponent } from './componentes/register-page/register-page.component';
 
+import { AutorizacionGuard } from './guards/autorizacion.guard';
+
 const routes: Routes = [
   {path: '' , component: HomePageComponent},
   {path: 'login' , component: LoginPageComponent},
   {path: 'register' , component: RegisterPageComponent},
-  {path: 'private' , component: PrivatePageComponent},
+  {path: 'private' , component: PrivatePageComponent, canActivate: [AutorizacionGuard]},
   {path: '**' , component: NotFoundPageComponent}
 ];
 

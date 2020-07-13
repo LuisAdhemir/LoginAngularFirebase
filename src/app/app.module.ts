@@ -17,6 +17,8 @@ import { AngularFireAuthModule }from '@angular/fire/auth';
 import { environment } from '../environments/environment';
 import { AutenticaServiceService } from './Servicios/autentica-service.service'
 
+import { AutorizacionGuard } from './guards/autorizacion.guard';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +36,7 @@ import { AutenticaServiceService } from './Servicios/autentica-service.service'
     AngularFireAuthModule,
     AngularFireModule.initializeApp(environment.firebaseConfig)
   ],
-  providers: [AutenticaServiceService],
+  providers: [AutenticaServiceService, AutorizacionGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
